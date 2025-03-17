@@ -1,0 +1,54 @@
+.dialog {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+.dialog:hover {
+    cursor: pointer;
+}
+
+.dialog .message {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: #FFF;
+    top: -20px;
+    right: -30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog .entry-message {
+    position: absolute;
+    right: -58px;
+    top: 40px;
+    color: #FFF;
+    font-size: 28px;
+    transform: rotate(-10deg);
+}
+
+.video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.image-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    overflow: hidden;
+}

@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css?family=VT323&display=swap");
+
+:root {
+  --crt-green: #33ff33;
+  --crt-bg: #050505;
+  --crt-glow: rgba(51, 255, 51, 0.5);
+}
+
+.crt-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'VT323', monospace;
+  color: var(--crt-green);
+  text-shadow: 0 0 5px var(--crt-glow);
+  z-index: 9996;
+}
+
+/* Terminal box */
+.terminal {
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
+  background: rgba(0, 0, 0, 1);
+  padding: 50px;
+  overflow-y: auto;
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+
+/* Terminal text */
+.terminal-line {
+  margin-bottom: 5px;
+}
+
+/* Power-on flicker effect (SMOOTHER NOW) */
+.power-on-effect {
+  animation: flicker 1.2s ease-in-out alternate;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Typing animation (Smoother typing effect now) */
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  animation: typing 1s steps(24, end) forwards;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Blinking cursor (Now properly spaced & smooth) */
+@keyframes blink {
+  50% {
+    border-right: 0.2em solid var(--crt-green);
+  }
+}
+
+/* Authentication success effect (Smooth flashing now) */
+.success {
+  font-size: 2rem;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: flashSuccess 2s infinite ease-in-out;
+}
+
+@keyframes flashSuccess {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* Input prompt */
+.prompt {
+  color: var(--crt-green);
+}
+
+/* Terminal input */
+.terminal-input {
+  background: none;
+  border: none;
+  color: var(--crt-green);
+  font-family: 'VT323', monospace;
+  font-size: 1.6rem;
+  outline: none;
+  width: auto;
+  caret-color: var(--crt-green);
+  text-shadow: 0 0 5px var(--crt-glow);
+}

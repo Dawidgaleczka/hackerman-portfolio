@@ -1,0 +1,9 @@
+.pixel {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    mix-blend-mode: difference;
+    background-color: white;
+    pointer-events: none;
+    z-index: 9999;
+}

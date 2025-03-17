@@ -1,0 +1,66 @@
+/* Fixed CRT background with a circular gradient to mimic a curved screen */
+.crt-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    
+    background: radial-gradient(circle, rgba(51, 255, 51, 0.1) 10%, rgba(5, 5, 5, .3) 80%);
+}
+
+/* Always visible scanlines */
+.crt-scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+    
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 0, 0.1) 0px,
+        rgba(0, 255, 0, 0.2) 3px,
+        rgba(0, 0, 0, 0) 6px
+    );
+    opacity: 0.2;
+}
+
+/* Moving scanline overlay */
+.crt-overlay {
+    position: fixed;
+    top: -5%;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    animation: scanline 8s ease-in-out infinite;
+
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0.15;
+}
+
+@keyframes scanline {
+    0% {
+        top: -10%;
+        opacity: 0.05;
+    }
+    25% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    75% {
+        opacity: 0.2;
+    }
+    100% {
+        top: 110%;
+        opacity: 0.05;
+    }
+}

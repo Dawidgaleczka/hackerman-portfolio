@@ -3,8 +3,12 @@ import '../VaporWave/styles/about-me.css';
 
 const AboutMeSection = () => {
     const aboutCardRef = useRef(null);
+    const isMobile = window.innerWidth <= 768;
 
     useEffect(() => {
+        
+        if (isMobile) return;
+        
         const aboutCard = aboutCardRef.current;
         if (!aboutCard) return;
 
@@ -60,7 +64,7 @@ const AboutMeSection = () => {
                 aboutCard.removeEventListener('mouseleave', handleMouseLeave);
             }
         };
-    }, []);
+    }, [isMobile]);
 
     return (
         <div className="content-section about-me-section">
@@ -71,6 +75,11 @@ const AboutMeSection = () => {
                 <div className="about-text">
                     <h2>About Me</h2>
                     <p>Hi! I'm a developer passionate about creating engaging digital experiences. With a focus on web development and immersive interfaces, I love bringing creative ideas to life through code.</p>
+                    <p>I specialize in building websites and applications that not only look great but also provide exceptional user experiences. From front-end design to back-end functionality, I enjoy working on all aspects of web development.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or expanding my skills through continuous learning.</p>
+                </div>
+                <div className="social-links-container">
+                    <h3>Connect With Me</h3>
                     <div className="social-links">
                         <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="social-link">
                             <i className="fab fa-linkedin"></i> LinkedIn

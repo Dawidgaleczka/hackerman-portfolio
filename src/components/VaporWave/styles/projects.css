@@ -1,12 +1,29 @@
 /* =========================================
    Projects Section
    ========================================= */
+   .content-section.projects-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #00ff99;
+    animation: fadeIn 1s ease-in-out;
+    padding: 80px 40px 100px;
+    overflow-y: auto;
+}
+
 .projects-section h2 {
     font-family: 'Coubra', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 40px;
     text-shadow: 0 0 10px #00ff99;
     letter-spacing: 3px;
+    text-align: center;
 }
 
 .projects-grid {
@@ -14,6 +31,7 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
     max-width: 1200px;
+    width: 100%;
 }
 
 .project-card {
@@ -23,6 +41,8 @@
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
+    position: relative;
+    z-index: 10;
 }
 
 .project-card:hover {
@@ -64,6 +84,8 @@
     display: flex;
     padding: 0 20px 20px;
     gap: 10px;
+    position: relative;
+    z-index: 20;
 }
 
 .project-link {
@@ -75,9 +97,153 @@
     border: 1px solid #00ff99;
     border-radius: 4px;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 25;
+    pointer-events: auto !important;
 }
 
 .project-link:hover {
     background: rgba(0, 255, 153, 0.3);
     box-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+}
+
+/* =========================================
+   Media Queries - Tablet
+   ========================================= */
+@media (max-width: 768px) {
+    /* Container adjustments */
+    .content-section.projects-section {
+        padding: 60px 15px 100px !important;
+        height: auto !important;
+        position: relative !important;
+        overflow-y: visible !important;
+    }
+    
+    /* Title adjustments */
+    .projects-section h2 {
+        font-size: 2rem !important;
+        margin-bottom: 25px !important;
+        letter-spacing: 2px !important;
+    }
+    
+    /* Grid adjustments - single column for tablet */
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 25px !important;
+        max-width: 500px !important;
+    }
+    
+    /* Card adjustments */
+    .project-card {
+        margin-bottom: 5px !important;
+        transform: none !important;
+    }
+    
+    .project-card:hover {
+        transform: none !important;
+        box-shadow: 0 0 20px rgba(0, 255, 153, 0.5) !important;
+    }
+    
+    /* Link adjustments */
+    .project-links {
+        justify-content: center !important;
+    }
+    
+    .project-link {
+        padding: 8px 15px !important;
+        font-size: 1rem !important;
+        min-width: 100px !important;
+        text-align: center !important;
+    }
+    
+    /* Make sure the card text is readable */
+    .project-card h3 {
+        text-align: center !important;
+        font-size: 1.2rem !important;
+    }
+    
+    .project-card p {
+        text-align: center !important;
+        padding: 10px 15px !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Image adjustments */
+    .project-image {
+        height: 160px !important;
+    }
+}
+
+/* =========================================
+   Media Queries - Mobile
+   ========================================= */
+@media (max-width: 480px) {
+    /* Container adjustments */
+    .content-section.projects-section {
+        padding: 40px 10px 100px !important;
+    }
+    
+    /* Title adjustments */
+    .projects-section h2 {
+        font-size: 1.7rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Grid and card adjustments */
+    .projects-grid {
+        gap: 20px !important;
+        max-width: 320px !important;
+    }
+    
+    .project-card {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Image adjustments */
+    .project-image {
+        height: 140px !important;
+    }
+    
+    /* Text adjustments */
+    .project-card h3 {
+        font-size: 1.1rem !important;
+        padding: 12px 15px 0 !important;
+    }
+    
+    .project-card p {
+        font-size: 0.85rem !important;
+        padding: 8px 15px !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Link adjustments */
+    .project-links {
+        padding: 0 15px 15px !important;
+        gap: 8px !important;
+    }
+    
+    .project-link {
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+        min-width: 80px !important;
+    }
+}
+
+/* Fix for back button to stay above projects */
+.back-button-container {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 85% !important;
+    max-width: 300px !important;
+    z-index: 2000 !important;
+    background: transparent !important;
+}
+
+@media (max-width: 480px) {
+    .back-button-container {
+        bottom: 15px !important;
+        max-width: 250px !important;
+    }
 }

@@ -1,0 +1,344 @@
+/* =========================================
+   Mobile Responsiveness
+   ========================================= */
+
+   @media (max-width: 768px) {
+    /* ----------- Speech Bubble & Dialog ----------- */
+    .speech-bubble {
+      width: 90% !important;
+      left: 50% !important;
+      right: auto !important;
+      max-width: 320px !important;
+      top: auto !important;
+      bottom: -120px !important;
+      transform: translateX(-50%) translateY(-50%) !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+      position: fixed !important;
+      z-index: 1000 !important;
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      overflow: visible !important;
+    }
+    
+    .speech-bubble-text {
+      width: 100% !important;
+      padding: 10px !important;
+      box-sizing: border-box !important;
+      padding-bottom: 25px !important;
+      padding-right: 80px !important;
+    }
+    
+    .speech-bubble-text h1 {
+      font-size: 16px !important;
+      margin: 5px 0 !important;
+    }
+    
+    .Typewriter__wrapper, 
+    .Typewriter__cursor {
+      font-size: 14px !important;
+      max-width: 100% !important;
+      word-wrap: break-word !important;
+      overflow-wrap: break-word !important;
+    }
+    
+    .speech-bubble-buttons {
+      padding: 0 !important;
+      display: flex !important;
+      justify-content: center !important;
+      position: absolute !important;
+      bottom: 0 !important;
+      right: 0 !important;
+      left: auto !important;
+      z-index: 1010 !important;
+      transform: translate(15px, 15px) !important;
+    }
+    
+    .speech-bubble .eightbit-btn,
+    .dialog-footer button,
+    .speech-bubble button {
+      font-size: 16px !important;
+      padding: 8px 12px !important;
+      margin: 0 !important;
+      min-width: 80px !important;
+      min-height: 40px !important;
+      border: 2px solid #000 !important;
+    }
+    
+    .speech-bubble-triangle {
+      display: none !important;
+    }
+    
+    .dialog-box {
+      bottom: -120px !important;
+      transform: translateX(-50%) translateY(-50%) !important;
+      position: fixed !important;
+      left: 50% !important;
+      width: 90% !important;
+      max-width: 320px !important;
+      overflow: visible !important;
+    }
+    
+    .dialog-footer {
+      padding: 0 !important;
+      display: flex !important;
+      justify-content: center !important;
+      position: absolute !important;
+      bottom: 0 !important;
+      right: 0 !important;
+      left: auto !important;
+      z-index: 1010 !important;
+      transform: translate(15px, 15px) !important;
+    }
+
+    /* ----------- 3D Skull Positioning ----------- */
+    .skull-renderer {
+      padding-top: 0 !important;
+      margin-top: -90px !important;
+    }
+    
+    canvas.skull-webgl {
+      height: auto !important;
+      width: 100% !important;
+      transform: translateY(-60px) !important;
+    }
+    
+    .skull-container {
+      margin-top: -80px !important;
+      position: relative !important;
+    }
+    
+    .skull-scene-inner {
+      padding-bottom: 150px !important;
+      padding-top: 0 !important;
+      margin-top: -40px !important;
+    }
+
+    /* ----------- Navigation Buttons ----------- */
+    .navigation-buttons {
+      display: flex !important;
+      flex-direction: row !important;
+      position: absolute !important;
+      top: 65% !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 100% !important;
+      max-width: 360px !important;
+      z-index: 999 !important;
+      justify-content: center !important;
+      gap: 20px !important;
+    }
+
+    .nav-button {
+      margin: 0 !important;
+      font-size: 22px !important;
+      padding: 12px 20px !important;
+      width: auto !important;
+      min-width: 160px !important;
+      border: 4px solid #00ff99 !important;
+      text-align: center !important;
+      background-color: transparent !important;
+      color: white !important;
+      text-shadow: 2px 2px 3px #000 !important;
+      box-shadow: 4px 4px 0 rgba(0, 255, 153, 0.5) !important;
+      min-height: 55px !important;
+      font-weight: bold !important;
+      text-decoration: none !important;
+      letter-spacing: 1px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .nav-button:hover {
+      box-shadow: 0 0 15px #00ff99, 4px 4px 0 rgba(0, 255, 153, 0.5) !important;
+      text-shadow: 0 0 8px #00ff99, 2px 2px 3px #000 !important;
+    }
+
+    /* ----------- Back Button ----------- */
+    .back-button-container {
+      position: fixed !important;
+      bottom: 20px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 85% !important;
+      max-width: 300px !important;
+      z-index: 999 !important;
+    }
+
+    .back-button {
+      width: 100% !important;
+      font-size: 18px !important;
+      padding: 10px !important;
+      border: 3px solid #000 !important;
+      text-align: center !important;
+      background-color: transparent !important;
+      color: white !important;
+      text-shadow: 1px 1px 2px #000 !important;
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7) !important;
+      font-weight: bold !important;
+      text-decoration: none !important;
+    }
+
+    /* ----------- Title Section Mobile Styles ----------- */
+    .vapor-wave-bottom {
+      height: 100vh !important;
+      padding: 20px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    
+    .vapor-wave-content {
+      text-align: center !important;
+      width: 100% !important;
+      max-width: 500px !important;
+      padding: 20px !important;
+      padding-top: 30px !important;
+    }
+    
+    .vapor-wave-content h1.glitch {
+      font-size: 32px !important;
+      line-height: 1.2 !important;
+      margin-bottom: 15px !important;
+      letter-spacing: 2px !important;
+      position: relative !important;
+    }
+    
+    .vapor-wave-content h2 {
+      font-size: 24px !important;
+      margin-bottom: 15px !important;
+      margin-top: 0 !important;
+    }
+    
+    .vapor-wave-content h3.kanji {
+      font-size: 18px !important;
+      margin-bottom: 25px !important;
+    }
+    
+    /* Hide glow heading on mobile devices */
+    .vapor-wave-content h1.glow {
+      display: none !important;
+    }
+    
+    /* Start button adjustments */
+    .start-button {
+      font-size: 22px !important;
+      padding: 10px 40px !important;
+      border: 3px solid #00ff99 !important;
+      box-shadow: 0 0 15px rgba(0, 255, 153, 0.7) !important;
+      background-color: rgba(0, 0, 0, 0.6) !important;
+      min-width: 180px !important;
+      min-height: 50px !important;
+      margin-top: 20px !important;
+    }
+    
+    .start-button:hover,
+    .start-button:active {
+      background-color: rgba(0, 255, 153, 0.2) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 0 20px #00ff99 !important;
+    }
+}
+
+/* ----------------------------------------
+   Smaller Screens (480px and below)
+   ---------------------------------------- */
+@media (max-width: 480px) {
+    /* Speech bubble */
+    .speech-bubble {
+      width: 85% !important;
+      max-width: 270px !important;
+      bottom: -100px !important;
+      transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
+    }
+    
+    .speech-bubble-text {
+      font-size: 14px !important;
+      padding-right: 60px !important;
+    }
+    
+    .Typewriter__wrapper, 
+    .Typewriter__cursor {
+      font-size: 12px !important;
+    }
+    
+    .speech-bubble .eightbit-btn,
+    .dialog-footer button,
+    .speech-bubble button {
+      font-size: 14px !important; 
+      padding: 6px 10px !important;
+      min-width: 70px !important;
+      min-height: 35px !important;
+    }
+    
+    /* Dialog */
+    .dialog-box {
+      bottom: -100px !important;
+      transform: translateX(-50%) translateY(-50%) scale(0.8) !important;
+    }
+    
+    /* Skull positioning */
+    .skull-renderer {
+      margin-top: -110px !important;
+    }
+    
+    canvas.skull-webgl {
+      transform: translateY(-80px) !important;
+    }
+    
+    .skull-container {
+      margin-top: -100px !important;
+    }
+    
+    .skull-scene-inner {
+      margin-top: -60px !important;
+    }
+    
+    /* Navigation buttons */
+    .navigation-buttons {
+      top: 70% !important;
+      gap: 16px !important;
+      width: 95% !important;
+    }
+    
+    .nav-button {
+      font-size: 18px !important;
+      padding: 10px 16px !important;
+      min-width: 140px !important;
+      min-height: 45px !important;
+      border: 3px solid #00ff99 !important; 
+      box-shadow: 3px 3px 0 rgba(0, 255, 153, 0.5) !important; 
+    }
+    
+    .nav-button:hover {
+      box-shadow: 0 0 10px #00ff99, 3px 3px 0 rgba(0, 255, 153, 0.5) !important;
+    }
+    
+    /* Back button */
+    .back-button {
+      font-size: 16px !important;
+      padding: 8px !important;
+    }
+
+    /* Title section adjustments for smallest screens */
+    .vapor-wave-content h1.glitch {
+      font-size: 24px !important;
+      letter-spacing: 1px !important;
+    }
+    
+    .vapor-wave-content h2 {
+      font-size: 20px !important;
+    }
+    
+    .vapor-wave-content h3.kanji {
+      font-size: 16px !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .start-button {
+      font-size: 20px !important;
+      padding: 8px 30px !important;
+      min-width: 160px !important;
+      min-height: 45px !important;
+    }
+}

@@ -23,6 +23,8 @@ const SkullScene = ({ canvasRef }) => {
     const [showPostMatrixDialog, setShowPostMatrixDialog] = useState(false);
     const [skullVisible, setSkullVisible] = useState(true);
     const [showBackButton, setShowBackButton] = useState(false);
+    const [showAboutMe, setShowAboutMe] = useState(false);
+    const [showProjects, setShowProjects] = useState(false);
     
     // Refs
     const skullRef = useRef(null);
@@ -390,7 +392,7 @@ const SkullScene = ({ canvasRef }) => {
     // =========================================
     // Navigation Handlers
     // =========================================
-    const handleButtonClick = () => {
+    const handleButtonClick = (section) => {
         setShowNavigationButtons(false);
         setShowMatrixAnimation(true);
         setSkullVisible(false);
@@ -398,12 +400,23 @@ const SkullScene = ({ canvasRef }) => {
         setTimeout(() => {
             setShowMatrixAnimation(false);
             setShowBackButton(true);
+            
+            // Set the appropriate section to show
+            if (section === 'about') {
+                setShowAboutMe(true);
+                setShowProjects(false);
+            } else if (section === 'projects') {
+                setShowProjects(true);
+                setShowAboutMe(false);
+            }
         }, 3000);
     };
 
     const handleBackClick = () => {
         setShowBackButton(false);
         setShowMatrixAnimation(true);
+        setShowAboutMe(false);
+        setShowProjects(false);
         
         setTimeout(() => {
             setShowMatrixAnimation(false);
@@ -411,6 +424,69 @@ const SkullScene = ({ canvasRef }) => {
             setShowNavigationButtons(true);
         }, 3000);
     };
+
+    // =========================================
+    // 3D Card Effect
+    // =========================================
+    const aboutCardRef = useRef(null);
+
+    useEffect(() => {
+        const aboutCard = aboutCardRef.current;
+        if (!aboutCard) return;
+
+        let bounds;
+
+        const rotateElement = (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            const leftX = mouseX - bounds.left;
+            const topY = mouseY - bounds.top;
+            
+            const center = {
+                x: bounds.width / 2,
+                y: bounds.height / 2
+            };
+            
+            const distanceX = leftX - center.x;
+            const distanceY = topY - center.y;
+            
+            // Limit the rotation
+            const rotateX = Math.min(Math.max(-10, distanceY / 10), 10);
+            const rotateY = Math.min(Math.max(-10, -distanceX / 10), 10);
+            
+            aboutCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        };
+        
+        const resetElement = () => {
+            aboutCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        };
+        
+        const handleMouseMove = (e) => {
+            if (!bounds) bounds = aboutCard.getBoundingClientRect();
+            window.requestAnimationFrame(() => rotateElement(e));
+        };
+        
+        const handleMouseLeave = () => {
+            window.requestAnimationFrame(() => resetElement());
+        };
+        
+        const handleMouseEnter = () => {
+            bounds = aboutCard.getBoundingClientRect();
+        };
+        
+        aboutCard.addEventListener('mouseenter', handleMouseEnter);
+        aboutCard.addEventListener('mousemove', handleMouseMove);
+        aboutCard.addEventListener('mouseleave', handleMouseLeave);
+        
+        return () => {
+            if (aboutCard) {
+                aboutCard.removeEventListener('mouseenter', handleMouseEnter);
+                aboutCard.removeEventListener('mousemove', handleMouseMove);
+                aboutCard.removeEventListener('mouseleave', handleMouseLeave);
+            }
+        };
+    }, [showAboutMe]);
 
     // =========================================
     // Render
@@ -424,7 +500,7 @@ const SkullScene = ({ canvasRef }) => {
                 {/* Dialog Sequence */}
                 {currentDialog === 1 && !showSurrenderDialog && !gameCompleted && skullVisible && (
                     <Dialog
-                        name={"Ghost in the machine"}
+                        name={"Lost travler"}
                         defaultOpen={true}
                         imageSrc={imageSrc}
                         conversation={["This digital highway isn't big enough for the both of us..."]}
@@ -433,7 +509,7 @@ const SkullScene = ({ canvasRef }) => {
                 )}
                 {currentDialog === 2 && !showSurrenderDialog && !gameCompleted && skullVisible && (
                     <Dialog
-                        name={"Ghost in the machine"}
+                        name={"Lost travler"}
                         defaultOpen={true}
                         imageSrc={imageSrc}
                         conversation={["Ehm.. hold up. Maybe we can talk about this?"]}
@@ -443,7 +519,7 @@ const SkullScene = ({ canvasRef }) => {
                 {/* Surrender Dialog */}
                 {showSurrenderDialog && !showMatrixAnimation && skullVisible && (
                     <Dialog
-                        name={"Ghost in the machine"}
+                        name={"Lost travler"}
                         defaultOpen={true}
                         imageSrc={imageSrc}
                         conversation={["I give up! Please stop shooting me!"]}
@@ -454,7 +530,7 @@ const SkullScene = ({ canvasRef }) => {
                 {/* Post-Matrix Dialog */}
                 {showPostMatrixDialog && skullVisible && (
                     <Dialog
-                        name={"Ghost in the machine"}
+                        name={"Lost travler"}
                         defaultOpen={true}
                         imageSrc={imageSrc}
                         conversation={["Thanks for sparing me! I can help you navigate this digital wasteland now. Where would you like to go?"]}
@@ -474,16 +550,73 @@ const SkullScene = ({ canvasRef }) => {
                     <div className="navigation-buttons">
                         <button 
                             className="nav-button about-button" 
-                            onClick={handleButtonClick}
+                            onClick={() => handleButtonClick('about')}
                         >
                             ABOUT ME
                         </button>
                         <button 
                             className="nav-button projects-button" 
-                            onClick={handleButtonClick}
+                            onClick={() => handleButtonClick('projects')}
                         >
                             PROJECTS
                         </button>
+                    </div>
+                )}
+
+                {/* About Me Section */}
+                {showAboutMe && (
+                    <div className="content-section about-me-section" ref={aboutCardRef}>
+                        <div className="about-content">
+                            <div className="about-image-container">
+                                <img src="/images/im-in.png" alt="Profile" className="about-image" />
+                            </div>
+                            <div className="about-text">
+                                <h2>About Me</h2>
+                                <p>Hi! I'm a developer passionate about creating engaging digital experiences. With a focus on web development and immersive interfaces, I love bringing creative ideas to life through code.</p>
+                                <div className="social-links">
+                                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="social-link">
+                                        <i className="fab fa-linkedin"></i> LinkedIn
+                                    </a>
+                                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" className="social-link">
+                                        <i className="fab fa-x-twitter"></i> X
+                                    </a>
+                                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="social-link">
+                                        <i className="fab fa-github"></i> GitHub
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Projects Section */}
+                {showProjects && (
+                    <div className="content-section projects-section">
+                        <h2>My Projects</h2>
+                        <div className="projects-grid">
+                            <div className="project-card">
+                                <div className="project-image">
+                                    <img src="/images/project1.jpg" alt="Project 1" />
+                                </div>
+                                <h3>Project Title 1</h3>
+                                <p>A brief description of the project and the technologies used.</p>
+                                <div className="project-links">
+                                    <a href="#" className="project-link">Demo</a>
+                                    <a href="#" className="project-link">GitHub</a>
+                                </div>
+                            </div>
+                            <div className="project-card">
+                                <div className="project-image">
+                                    <img src="/images/project2.jpg" alt="Project 2" />
+                                </div>
+                                <h3>Project Title 2</h3>
+                                <p>A brief description of the project and the technologies used.</p>
+                                <div className="project-links">
+                                    <a href="#" className="project-link">Demo</a>
+                                    <a href="#" className="project-link">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 )}
 

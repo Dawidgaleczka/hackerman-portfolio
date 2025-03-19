@@ -48,8 +48,8 @@ const App = () => {
             videoSrc={videoSrc}
             conversation={[
               "Welcome to the digital northern highway, My guy! Name's Dawid.",
-              "I'll be your local stalker through this digital wasteland. Buckle up, bro!",
-              "Smash that close button and let's blaze through the digital landscape!",
+              "I'll be your local S.T.A.L.K.E.R through this digital wasteland. Buckle up, My guy!",
+              "Smash that close button and let's blaze through the digital landscape! (scroll down)",
             ]}
           />
           {/* Audio Element */}

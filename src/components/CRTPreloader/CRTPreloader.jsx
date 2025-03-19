@@ -111,7 +111,7 @@ const CrtPreloader = ({ onComplete }) => {
                                 cursor: "",
                             }}
                             onInit={(typewriter) => {
-                                typewriter.typeString("Login to continue.").start();
+                                typewriter.typeString("Login to continue. (PS. there is no login)").start();
                             }}
                         />
                     </div>

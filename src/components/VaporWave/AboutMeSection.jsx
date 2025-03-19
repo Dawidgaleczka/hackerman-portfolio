@@ -74,13 +74,22 @@ const AboutMeSection = () => {
                 </div>
                 <div className="about-text">
                     <h2>About Me</h2>
-                    <p>Hi! I'm a developer passionate about creating engaging digital experiences. With a focus on web development and immersive interfaces, I love bringing creative ideas to life through code.</p>
+                    <p>Hi! I'm Dawid I'm a developer passionate about creating engaging digital experiences. With a focus on web development and immersive interfaces, I love bringing creative ideas to life through code.</p>
                     <p>I specialize in building websites and applications that not only look great but also provide exceptional user experiences. From front-end design to back-end functionality, I enjoy working on all aspects of web development.</p>
                     <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or expanding my skills through continuous learning.</p>
                 </div>
                 <div className="social-links-container">
                     <h3>Connect With Me</h3>
-                    <div className="social-links">
+                    
+                    {/* First row - Email only (full width) */}
+                    <div className="social-links email-row">
+                        <a href="mailto:dawid@galeczka.dev" target="_blank" rel="noopener noreferrer" className="social-link email-link">
+                            <i className="fas fa-envelope"></i> dawid@galeczka.dev
+                        </a>
+                    </div>
+                    
+                    {/* Second row - Social platforms */}
+                    <div className="social-links platforms-row">
                         <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="social-link">
                             <i className="fab fa-linkedin"></i> LinkedIn
                         </a>

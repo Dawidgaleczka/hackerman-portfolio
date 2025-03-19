@@ -196,7 +196,7 @@ const SkullScene = ({ canvasRef }) => {
                         name={"Lost travler"}
                         defaultOpen={true}
                         imageSrc={imageSrc}
-                        conversation={["This digital highway isn't big enough for the both of us..."]}
+                        conversation={["This digital highway aint big enough for the both of us..."]}
                         afterClose={closeDialog1}
                     />
                 )}
@@ -205,7 +205,7 @@ const SkullScene = ({ canvasRef }) => {
                         name={"Lost travler"}
                         defaultOpen={true}
                         imageSrc={imageSrc}
-                        conversation={["Ehm.. hold up. Maybe we can talk about this?"]}
+                        conversation={["Ehm.. Maybe we could talk about this? (click on the gun)"]}
                         afterClose={closeDialog2}
                     />
                 )}
@@ -226,7 +226,7 @@ const SkullScene = ({ canvasRef }) => {
                         name={"Lost travler"}
                         defaultOpen={true}
                         imageSrc={imageSrc}
-                        conversation={["Thanks for sparing me! I can help you navigate this digital wasteland now. Where would you like to go?"]}
+                        conversation={["Thanks for sparing me! I can help you navigate this digital wasteland. Where would you like to go?"]}
                         afterClose={closePostMatrixDialog}
                     />
                 )}

@@ -1,0 +1,142 @@
+/* =========================================
+   Button Styles
+   ========================================= */
+.vapor-wave-bottom button {
+    border: 1px solid #FFF;
+    padding: 12px 34px;
+    background: none;
+    color: #FFF;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 1000;
+    cursor: pointer;
+    left: 50%;
+    top: 0px;
+    transform: translate(-50%, 0%);
+    transition: all 0.3s ease-in-out;
+    letter-spacing: 6px;
+    font-family: "Pixelify Sans", serif;
+    outline: none;
+}
+
+.vapor-wave-bottom button:hover {
+    background: #FFF;
+    color: #000;
+    transform: translate(-50%, 0%) scale(1.05);
+}
+
+.vapor-wave-bottom button:active {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translate(-50%, 0%) scale(0.95);
+}
+
+/* Navigation buttons */
+.navigation-buttons {
+    position: absolute;
+    top: 50%; 
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 250px;
+    z-index: 1000;
+    animation: fadeIn 1s ease-in-out;
+    transform: translateY(-50%); 
+}
+
+.nav-button {
+    padding: 15px 30px;
+    background: rgba(0, 143, 17, 0.2);
+    border: 2px solid #00ff99;
+    color: #00ff99;
+    font-family: 'Coubra', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00ff99, inset 0 0 10px #00ff99;
+    text-shadow: 0 0 5px #00ff99;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 153, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.nav-button:hover {
+    background: rgba(0, 255, 153, 0.3);
+    box-shadow: 0 0 25px #00ff99, inset 0 0 15px #00ff99;
+    transform: scale(1.05);
+}
+
+.nav-button:hover::before {
+    left: 100%;
+}
+
+.nav-button:active {
+    transform: scale(0.95);
+}
+
+/* Back Button */
+.back-button-container {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.back-button {
+    padding: 15px 30px;
+    background: rgba(0, 143, 17, 0.2);
+    border: 2px solid #00ff99;
+    color: #00ff99;
+    font-family: 'Coubra', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00ff99, inset 0 0 10px #00ff99;
+    text-shadow: 0 0 5px #00ff99;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 153, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.back-button:hover {
+    background: rgba(0, 255, 153, 0.3);
+    box-shadow: 0 0 25px #00ff99, inset 0 0 15px #00ff99;
+    transform: scale(1.05);
+}
+
+.back-button:hover::before {
+    left: 100%;
+}
+
+.back-button:active {
+    transform: scale(0.95);
+}

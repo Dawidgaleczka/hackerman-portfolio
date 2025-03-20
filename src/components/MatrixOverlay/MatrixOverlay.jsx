@@ -8,7 +8,7 @@ const MatrixOverlay = () => {
     const dropsRef = useRef([]);
     const columnsRef = useRef(0);
     const characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZあいうえおカキクケコ";
-    const name = "Jeff van der Heijden".split("");
+    const name = "Dawid galeczka".split("");
     const startXRef = useRef(0);
     const middleRowRef = useRef(0);
 

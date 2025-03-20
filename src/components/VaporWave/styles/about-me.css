@@ -380,10 +380,180 @@
         font-size: 0.85rem !important;
         padding: 6px 10px !important;
     }
-    
-    /* Back button adjustments */
+   
     .back-button-container {
         bottom: 15px !important;
         max-width: 250px !important;
     }
 }
+
+/* Add space between email row and platforms row */
+.social-links.email-row {
+    margin-bottom: 10px !important; 
+}
+
+.social-links.platforms-row {
+    margin-top: 10px !important; 
+}
+
+@media (max-width: 768px) {
+    .social-links.email-row {
+        margin-bottom: 8px !important; 
+    }
+    
+    .social-links.platforms-row {
+        margin-top: 8px !important; 
+    }
+}
+
+@media (max-width: 480px) {
+    .social-links.email-row {
+        margin-bottom: 6px !important; 
+    }
+    
+    .social-links.platforms-row {
+        margin-top: 6px !important; 
+    }
+}
+
+/* Skills section styling */
+.skills-container {
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 20 !important;
+    transform: translateZ(10px);
+    transition: transform 0.6s ease;
+}
+
+.about-content:hover .skills-container {
+    transform: translateZ(20px);
+}
+
+.skills-container h3 {
+    font-family: 'Coubra', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px #00ff99;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #00ff99;
+    padding: 12px;
+    background: rgba(0, 143, 17, 0.1);
+    border: 1px solid #00ff99;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.skill-item:hover {
+    background: rgba(0, 255, 153, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 153, 0.4), 0 0 10px rgba(0, 255, 153, 0.2);
+}
+
+.skill-item i {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover i {
+    transform: scale(1.15);
+}
+
+.skill-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Media queries for skills section */
+@media (max-width: 768px) {
+    .skills-container {
+        margin-top: 20px;
+        transform: none !important;
+    }
+    
+    .about-content:hover .skills-container {
+        transform: none !important;
+    }
+    
+    .skills-container h3 {
+        font-size: 1.4rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .skill-item {
+        padding: 10px;
+    }
+    
+    .skill-item i {
+        font-size: 1.8rem;
+    }
+}
+
+/* Add this to your existing CSS file */
+.skills-grid-2x3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+}
+
+/* Update the media queries for the new grid layout */
+@media (max-width: 768px) {
+    .skills-grid-2x3 {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-container {
+        margin-top: 15px;
+    }
+    
+    .skills-container h3 {
+        font-size: 1.2rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .skills-grid-2x3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}    
+    .skill-item {
+        padding: 8px;
+    }
+    
+    .skill-item i {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+    
+    .skill-item span {
+        font-size: 0.8rem;
+    }
+
+

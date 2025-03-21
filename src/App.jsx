@@ -47,9 +47,9 @@ const App = () => {
             entryMessage={"YO!"}
             videoSrc={videoSrc}
             conversation={[
-              "Welcome to the digital northern highway, My guy! Name's Dawid.",
-              "I'll be your local S.T.A.L.K.E.R through this digital wasteland. Buckle up, My guy!",
-              "Smash that close button and let's blaze through the digital landscape! (scroll down)",
+              "Welcome to the Digital Northern Highway! I’m Dawid, your guide.",
+              "I’ll steer you through this digital wilds with skill. Ready up!",
+              "Hit close and we’ll trek the digital frontier! (scroll down)",
             ]}
           />
           {/* Audio Element */}

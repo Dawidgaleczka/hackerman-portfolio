@@ -1,18 +1,46 @@
 import gsap from "gsap";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const TitleSection = ({ handleGameStart }) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+    // Debounced resize handler
+    const handleResize = useCallback(() => {
+        const isMobileView = window.innerWidth <= 768;
+        if (isMobile !== isMobileView) {
+            setIsMobile(isMobileView);
+        }
+    }, [isMobile]);
+
     useEffect(() => {
-        // Handle resize events to update mobile state
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
+        const elementsToAnimate = [
+            ".vapor-wave-bottom h1.glitch",
+            ".vapor-wave-bottom h1.glow",
+            ".vapor-wave-bottom h2",
+            ".vapor-wave-bottom h3",
+            ".start-button"
+        ];
+        
+        elementsToAnimate.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.style.willChange = "opacity, transform";
+            }
+        });
+
+        let resizeTimer;
+        const throttledResize = () => {
+            if (!resizeTimer) {
+                resizeTimer = setTimeout(() => {
+                    resizeTimer = null;
+                    handleResize();
+                }, 200);
+            }
         };
         
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', throttledResize);
         
         // Initial animation setup
         const title = document.querySelector(".vapor-wave-bottom h1.glitch");
@@ -26,7 +54,7 @@ const TitleSection = ({ handleGameStart }) => {
         
         // Mobile animation - simpler, less scroll dependent
         if (isMobile) {
-            // Only animate the glitch title since glow is hidden on mobile
+
             gsap.to(title, {
                 opacity: 1,
                 duration: 1.2,
@@ -55,37 +83,46 @@ const TitleSection = ({ handleGameStart }) => {
                 delay: 1.5
             });
         } 
-        // Desktop animation with scroll trigger
+
         else {
-            gsap.fromTo(
-                [title, title2, name, title3, button],
-                { opacity: 0 },
-                {
-                    opacity: 1,
-                    duration: 1.5,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: ".vapor-wave-bottom",
-                        start: () => `${window.innerHeight * 0.4}px center`,
-                        end: () => `${window.innerHeight * 0.55}px center`,
-                        scrub: true,
-                        pin: false,
-                    },
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".vapor-wave-bottom",
+                    start: "top center",
+                    end: "center center",
+                    scrub: 0.5, 
+                    pin: false,
+                   
+                    markers: false,
+                    fastScrollEnd: true,
+                    preventOverlaps: true,
+                    invalidateOnRefresh: true
                 }
-            );
+            });
+      
+            tl.to([title, title2], { opacity: 1, duration: 0.5 })
+              .to(name, { opacity: 1, duration: 0.3 }, "-=0.2")
+              .to(title3, { opacity: 1, duration: 0.3 }, "-=0.1")
+              .to(button, { opacity: 1, duration: 0.3 }, "-=0.1");
         }
         
         return () => {
-            window.removeEventListener('resize', handleResize);
-            // Clean up ScrollTrigger
+            window.removeEventListener('resize', throttledResize);
+            
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+            elementsToAnimate.forEach(selector => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.style.willChange = "auto";
+                }
+            });
         };
-    }, [isMobile]);
+    }, [isMobile, handleResize]);
 
     return (
         <div className="vapor-wave-bottom">
             <div className="vapor-wave-content">
-                {/* Fix the data-text attribute to match the actual text */}
                 <h1 className="glitch" data-text="WEB & SOFTWARE DEVELOPER">WEB & SOFTWARE DEVELOPER</h1>
                 <h1 className="glow">WEB & SOFTWARE DEVELOPER</h1>
                 <h2>Dawid galeczka</h2>

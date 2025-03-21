@@ -1,20 +1,56 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../VaporWave/styles/about-me.css';
 
 const AboutMeSection = () => {
     const aboutCardRef = useRef(null);
-    const isMobile = window.innerWidth <= 768;
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const rafRef = useRef(null);
+    const boundsRef = useRef(null);
 
     useEffect(() => {
+        const handleResize = () => {
+            const isMobileView = window.innerWidth <= 768;
+            if (isMobile !== isMobileView) {
+                setIsMobile(isMobileView);
+                // Reset bounds cache on resize
+                boundsRef.current = null;
+            }
+        };
 
+        // Throttle resize events
+        let resizeTimer;
+        const throttledResize = () => {
+            if (!resizeTimer) {
+                resizeTimer = setTimeout(() => {
+                    resizeTimer = null;
+                    handleResize();
+                }, 200);
+            }
+        };
+
+        window.addEventListener('resize', throttledResize);
+        
+        return () => {
+            window.removeEventListener('resize', throttledResize);
+        };
+    }, [isMobile]);
+
+    useEffect(() => {
         if (isMobile) return;
 
         const aboutCard = aboutCardRef.current;
         if (!aboutCard) return;
 
-        let bounds;
-
+        // Add will-change to optimize rendering
+        aboutCard.style.willChange = 'transform';
+        
         const rotateElement = (e) => {
+            // Use cached bounds when possible
+            if (!boundsRef.current) {
+                boundsRef.current = aboutCard.getBoundingClientRect();
+            }
+            
+            const bounds = boundsRef.current;
             const mouseX = e.clientX;
             const mouseY = e.clientY;
 
@@ -29,28 +65,51 @@ const AboutMeSection = () => {
             const distanceX = leftX - center.x;
             const distanceY = topY - center.y;
 
-            // Limit the rotation
-            const rotateX = Math.min(Math.max(-10, distanceY / 10), 10);
-            const rotateY = Math.min(Math.max(-10, -distanceX / 10), 10);
+            // Limit the rotation and reduce sensitivity for smoother effect
+            const rotateX = Math.min(Math.max(-8, distanceY / 12), 8);
+            const rotateY = Math.min(Math.max(-8, -distanceX / 12), 8);
 
-            aboutCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            // Apply transform with hardware acceleration hints
+            aboutCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02) translateZ(0)`;
         };
 
         const resetElement = () => {
-            aboutCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            // Use transition for smooth reset
+            aboutCard.style.transition = 'transform 0.5s ease-out';
+            aboutCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateZ(0)`;
+            
+            // Clear the animation frame if it's still pending
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current);
+                rafRef.current = null;
+            }
         };
 
         const handleMouseMove = (e) => {
-            if (!bounds) bounds = aboutCard.getBoundingClientRect();
-            window.requestAnimationFrame(() => rotateElement(e));
+            // Cancel any existing animation frame
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current);
+            }
+            
+            // Remove transition during active movement for immediate response
+            aboutCard.style.transition = 'none';
+            
+            // Schedule the transform update
+            rafRef.current = requestAnimationFrame(() => {
+                rotateElement(e);
+                rafRef.current = null;
+            });
         };
 
         const handleMouseLeave = () => {
-            window.requestAnimationFrame(() => resetElement());
+            resetElement();
+            // Clear bounds cache when mouse leaves
+            boundsRef.current = null;
         };
 
         const handleMouseEnter = () => {
-            bounds = aboutCard.getBoundingClientRect();
+            // Recalculate bounds on mouse enter
+            boundsRef.current = aboutCard.getBoundingClientRect();
         };
 
         aboutCard.addEventListener('mouseenter', handleMouseEnter);
@@ -62,6 +121,14 @@ const AboutMeSection = () => {
                 aboutCard.removeEventListener('mouseenter', handleMouseEnter);
                 aboutCard.removeEventListener('mousemove', handleMouseMove);
                 aboutCard.removeEventListener('mouseleave', handleMouseLeave);
+                
+                // Reset will-change to avoid memory consumption
+                aboutCard.style.willChange = 'auto';
+                
+                // Cancel any pending animation frame
+                if (rafRef.current) {
+                    cancelAnimationFrame(rafRef.current);
+                }
             }
         };
     }, [isMobile]);
@@ -140,5 +207,6 @@ const AboutMeSection = () => {
 };
 
 export default AboutMeSection;
+
 
 

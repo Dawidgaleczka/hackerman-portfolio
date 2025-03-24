@@ -27,6 +27,17 @@ const ProjectsSection = () => {
                         <a href="https://github.com/Dawidgaleczka" className="project-link">GitHub</a>
                     </div>
                 </div>
+                <div className="project-card">
+                    <div className="project-image">
+                        <img src="/images/F1pulse.jpg" alt="Project 3" />
+                    </div>
+                    <h3>F1Pulse</h3>
+                    <p>Fotmob for F1 fans (still in work)</p>
+                    <div className="project-links">
+                        <a href="http://f1pulse.net/" className="project-link">Demo</a>
+                        <a href="https://github.com/Dawidgaleczka/F1Pulse" className="project-link">GitHub</a>
+                    </div>
+                </div>
             </div>
         </div>
     );

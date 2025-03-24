@@ -32,7 +32,7 @@ const ProjectsSection = () => {
                         <img src="/images/F1pulse.jpg" alt="Project 3" />
                     </div>
                     <h3>F1Pulse</h3>
-                    <p>Fotmob for F1 fans (still in work)</p>
+                    <p>Fotmob for F1 fans (Work in progress)</p>
                     <div className="project-links">
                         <a href="http://f1pulse.net/" className="project-link">Demo</a>
                         <a href="https://github.com/Dawidgaleczka/F1Pulse" className="project-link">GitHub</a>
